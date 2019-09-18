@@ -160,7 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1369779918}
-  cameraDistance: 40
+  cameraDistance: 38
+  yPos: 2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ GameObject:
   - component: {fileID: 1369779920}
   - component: {fileID: 1369779919}
   m_Layer: 0
-  m_Name: Player
+  m_Name: SpaceMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,7 +359,7 @@ GameObject:
   - component: {fileID: 1450851362}
   - component: {fileID: 1450851361}
   m_Layer: 0
-  m_Name: SpaceBackGround
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +439,7 @@ GameObject:
   - component: {fileID: 1463650675}
   - component: {fileID: 1463650674}
   m_Layer: 0
-  m_Name: Input
+  m_Name: TouchInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,8 +457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086af1608c6284f0698c51053f3e91bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {fileID: 1369779918}
   player: {fileID: 1369779916}
-  startPosition: {x: 0, y: 0}
+  forceMulti: 100
+  startPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0}
   directionChoosen: 0
 --- !u!4 &1463650675
