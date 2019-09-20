@@ -160,8 +160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1369779918}
-  cameraDistance: 38
-  yPos: 2
+  cameraDistance: 40
+  yPos: 0
+  zoomSpeed: 100
+  isCamZoomed: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

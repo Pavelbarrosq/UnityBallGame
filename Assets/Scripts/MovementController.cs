@@ -7,88 +7,81 @@ public class MovementController : MonoBehaviour
     public Transform playerPos;
     public GameObject player;
     private Rigidbody2D rb;
-    private Vector2 distance;
+    private float distance;
 
-    public float forceMulti = 200;
+    public float forceMulti = 0.5f;
     public Vector3 startPos;
     public Vector2 direction;
-    public bool directionChoosen;
+    public bool directionChoosen = false;
     private Vector3 touchDragDistance;
+    private CameraFollow cameraFollow;
+
 
     private void Awake()
     {
         rb = player.GetComponent<Rigidbody2D>();
         playerPos = player.GetComponent<Transform>();
+        
     }
 
     private void Start()
     {
-         
+        cameraFollow = Camera.main.GetComponent<CameraFollow>();
+        //timeCompelete = false;
     }
 
     private void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-            // Vector3 camPos = Camera.main.ScreenToWorldPoint(playerPos.position);
-            //Transform stopPos;
+        
 
-            startPos.z = 0f;
-
-            startPos = playerPos.position;
-
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    
-                    //startPosition = playerToCamPos;
-                    startPos = touchPos;//playerPos.position;
-                    rb.velocity = Vector3.zero;
-                    rb.gravityScale = 0;
-                    rb.mass = 0.1f;
-                    break;
-
-                case TouchPhase.Moved:
-
-                    //distance = touchPos - startPos;
-                    Debug.Log("Moving...");
-                    
-                    break;
-
-                case TouchPhase.Ended:
-                    //stopPos = playerPos;
-                    rb.mass = 1f;
-                    rb.gravityScale = 1;
-                    //direction = touchPos - startPos;
-                    distance = touchPos - startPos;
-                    // direction = touchPos;
-                    rb.AddForce(distance * forceMulti);
-                    //touchDragDistance = startPosition + direction;
-
-                    Debug.Log("Distance: " + distance);
-                    Debug.Log("Start!!!!!" + startPos);
-
-                    //directionChoosen = true;
-
-                    break;
-            }
-        }
-
-        //if (directionChoosen)
-        //{
-
-            
-
-        //    directionChoosen = false;
-        //}
     }
 
     
 
     private void FixedUpdate()
     {
-        
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
+            startPos.z = 0f;
+            startPos = playerPos.position;
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+
+                    //cameraFollow.HandleZoom(true);
+                    startPos = touchPos;
+                    rb.gravityScale = 0;
+                    rb.mass = 0.1f;
+                    rb.drag = 1;
+                    break;
+
+                case TouchPhase.Moved:
+
+
+                    break;
+
+                case TouchPhase.Ended:
+
+                    //cameraFollow.HandleZoom(false);
+
+                    distance = touchPos.magnitude;
+
+                    rb.drag = 0;
+                    rb.mass = 1f;
+                    rb.gravityScale = 1;
+
+                    direction = touchPos - startPos;
+
+                    rb.AddForce(direction * forceMulti);
+
+                    Debug.Log(distance);
+                    directionChoosen = true;
+                    break;
+            }
+        }
     }
 }
