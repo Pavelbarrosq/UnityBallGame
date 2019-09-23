@@ -13,6 +13,7 @@ public class Starfield : MonoBehaviour
     public float fieldWidth = 20f;
     public float fieldHeight = 25f;
     public bool colorize = false;
+    public float parallaxFactor;
 
     Transform cameraTransform;
 
@@ -52,6 +53,8 @@ public class Starfield : MonoBehaviour
 
     private void Update()
     {
+        
+
         for (int i = 0; i < maxStars; i++)
         {
             Vector3 pos = stars[i].position + transform.position;
@@ -73,7 +76,11 @@ public class Starfield : MonoBehaviour
         }
 
         particle.SetParticles(stars, stars.Length);
-        
+
+        Vector3 newPos = cameraTransform.position * parallaxFactor;
+        newPos.z = 0f;
+        transform.position = newPos;
+
     }
 
     private Vector3 GetRandomInRectangle(float width, float height)
