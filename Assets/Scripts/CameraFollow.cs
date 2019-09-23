@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     public Transform playerTransform;
     public float cameraDistance = 40f;
     public float yPos = 0.0f;
+    
 
 
     private void Awake()
@@ -27,7 +28,7 @@ public class CameraFollow : MonoBehaviour
     }
     private void Start()
     {
-
+      
     }
 
     private void CameraPosition(float position)
