@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
 
     public Rigidbody2D playerRB;
     public float pushUp = 0.5f;
+
+    private UnityEngine.Object explosionRef;
     
 
     SpriteRenderer sr;
@@ -23,6 +25,7 @@ public class EnemyController : MonoBehaviour
 
         matWhite = Resources.Load("WhiteFlash",typeof(Material)) as Material;
         matDefault = sr.material;
+        explosionRef = Resources.Load("Explosion");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +68,15 @@ public class EnemyController : MonoBehaviour
         {
             yield return new WaitForSeconds(waitTime);
             Destroy(gameObject);
+            AddParticleExplosion();
         }
+    }
+
+    private void AddParticleExplosion()
+    {
+        GameObject explosion = (GameObject)Instantiate(explosionRef);
+
+        explosion.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        
     }
 }
