@@ -121,6 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37697598669d341c0919b4130677f8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitToKillTime: 0.3
+  playerRB: {fileID: 0}
+  pushUp: 0.5
 --- !u!50 &8950252635579101295
 Rigidbody2D:
   serializedVersion: 4

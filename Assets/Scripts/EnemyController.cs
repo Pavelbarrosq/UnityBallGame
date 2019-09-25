@@ -30,23 +30,33 @@ public class EnemyController : MonoBehaviour
         
         if (collision.CompareTag("Player"))
         {
-            playerRB.drag = 10000;
+            playerRB.bodyType = RigidbodyType2D.Static;
+            //playerRB.gravityScale = 0;
+            //playerRB.mass = 0.1f;
+            //playerRB.drag = 10000;
             sr.material = matWhite;
             Debug.Log("Target hit!");
             
 
             StartCoroutine(KillEnemy(waitToKillTime));
 
+            playerRB.bodyType = RigidbodyType2D.Dynamic;
             PushPlayerUp();
         }
     }
 
     private void PushPlayerUp()
     {
-        playerRB.drag = 0;
+        //playerRB.drag = 0;
+        
 
         playerRB.AddForce(Vector2.up * pushUp);
+
         
+
+        //playerRB.mass = 1;
+
+        //playerRB.gravityScale = 1;
     }
 
     private IEnumerator KillEnemy(float waitTime)
