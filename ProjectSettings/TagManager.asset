@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Ground
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -43,6 +46,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Planets
+    uniqueID: 1670262289
     locked: 0
   - name: Player
     uniqueID: 1470094615
