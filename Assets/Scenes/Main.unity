@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8950252635579101292, guid: 3405712ea9dcc4459a288e2f063e026d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8950252635579101331, guid: 3405712ea9dcc4459a288e2f063e026d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -200,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 8950252635579101294, guid: 3405712ea9dcc4459a288e2f063e026d,
         type: 3}
       propertyPath: pushUp
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3405712ea9dcc4459a288e2f063e026d, type: 3}
@@ -499,6 +504,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8950252635579101292, guid: 3405712ea9dcc4459a288e2f063e026d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8950252635579101331, guid: 3405712ea9dcc4459a288e2f063e026d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,7 +577,7 @@ PrefabInstance:
     - target: {fileID: 8950252635579101294, guid: 3405712ea9dcc4459a288e2f063e026d,
         type: 3}
       propertyPath: pushUp
-      value: 500
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3405712ea9dcc4459a288e2f063e026d, type: 3}
@@ -20031,6 +20041,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8950252635579101292, guid: 3405712ea9dcc4459a288e2f063e026d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8950252635579101331, guid: 3405712ea9dcc4459a288e2f063e026d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20099,7 +20114,7 @@ PrefabInstance:
     - target: {fileID: 8950252635579101294, guid: 3405712ea9dcc4459a288e2f063e026d,
         type: 3}
       propertyPath: pushUp
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3405712ea9dcc4459a288e2f063e026d, type: 3}
@@ -20423,10 +20438,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPos: {fileID: 1369779918}
   player: {fileID: 1369779916}
-  forceMulti: 30
+  forceMulti: 50
   startPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0}
   directionChoosen: 0
+  delay: 0.5
 --- !u!4 &1463650675
 Transform:
   m_ObjectHideFlags: 0
