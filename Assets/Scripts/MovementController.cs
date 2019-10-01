@@ -7,24 +7,31 @@ public class MovementController : MonoBehaviour
     public Transform playerPos;
     public GameObject player;
     private Rigidbody2D rb;
+    public LineRenderer lr;
+
+    Vector3 lineOffSet = new Vector3(0, 0.6f);
+    Vector3 lineStartPos;
+    Vector3 lineEndPos;
+
     private float distance;
 
     public float forceMulti = 0.5f;
     public float setDrag = 1;
-    public Vector3 startPos;
-    public Vector2 direction;
-    public bool directionChoosen = false;
+    private Vector3 startPos;
+    private Vector2 direction;
+    private bool directionChoosen = false;
     private Vector3 touchDragDistance;
     private CameraFollow cameraFollow;
 
     public float delay = 0.5f;
-    private bool orNah = false;
+
 
 
     private void Awake()
     {
         rb = player.GetComponent<Rigidbody2D>();
         playerPos = player.GetComponent<Transform>();
+        
         
     }
 
@@ -36,48 +43,64 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        lineStartPos = playerPos.position + lineOffSet;
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
             startPos.z = 0f;
             startPos = playerPos.position;
+            lr.positionCount = 2;
 
             switch (touch.phase)
             {
                 case TouchPhase.Began:
+                    
                     //cameraFollow.HandleZoom(true);
                     startPos = touchPos;
                     //StartCoroutine(SetRBComponent(delay, true));
                     rb.gravityScale = 0;
                     rb.mass = 0.1f;
+
+
                     rb.drag = setDrag;
+                    lr.enabled = true;
+                    lineStartPos = playerPos.position + lineOffSet;
+                    lr.SetPosition(0, lineStartPos);
+                    lr.useWorldSpace = true;
+
                     break;
 
                 case TouchPhase.Moved:
-
+                    lineEndPos = touchPos + lineOffSet;
+                    lr.SetPosition(0, lineStartPos);
+                    lr.SetPosition(1, lineEndPos);
 
                     break;
 
                 case TouchPhase.Ended:
+                    lr.enabled = false;
                     //cameraFollow.HandleZoom(false);
                     distance = touchPos.magnitude;
                     direction = touchPos - startPos;
 
                     rb.AddForce(direction * forceMulti);
+                    
                     rb.gravityScale = 1;
                     rb.mass = 1;
                     rb.drag = 0;
                     //StartCoroutine(SetRBComponent(delay, false));
-                    
 
-                    Debug.Log(distance);
+
+                    Debug.Log("SLUT!");
                     directionChoosen = true;
 
                     break;
             }
         }
     }
+
+    
 
     //private IEnumerator SetRBComponent(float delay, bool orNah)
     //{
