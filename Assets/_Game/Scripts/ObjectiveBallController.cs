@@ -12,13 +12,19 @@ public class ObjectiveBallController : MonoBehaviour
     private SpriteRenderer sr;
     private CircleCollider2D cc;
 
-    public Rigidbody2D playerRB;
+    Rigidbody2D playerRefRB;
+
+    //public Rigidbody2D playerRB;
     private UnityEngine.Object explosionRef;
 
 
     private void Start()
     {
-        cc = playerRB.GetComponentInParent<CircleCollider2D>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerRefRB = player.GetComponent<Rigidbody2D>();
+
+
+        cc = playerRefRB.GetComponentInParent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         matDefault = sr.material;
@@ -31,7 +37,7 @@ public class ObjectiveBallController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             
-            playerRB.bodyType = RigidbodyType2D.Static;
+            playerRefRB.bodyType = RigidbodyType2D.Static;
             //playerRB.gravityScale = 0;
             //playerRB.mass = 0.1f;
             //playerRB.drag = 10000;
@@ -51,7 +57,7 @@ public class ObjectiveBallController : MonoBehaviour
         //playerRB.drag = 0;
 
 
-        playerRB.AddForce(Vector2.up * pushUp);
+        playerRefRB.AddForce(Vector2.up * pushUp);
 
 
 
@@ -67,7 +73,7 @@ public class ObjectiveBallController : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
             Destroy(gameObject);
             AddParticleExplosion();
-            playerRB.bodyType = RigidbodyType2D.Dynamic;
+            playerRefRB.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
@@ -77,5 +83,10 @@ public class ObjectiveBallController : MonoBehaviour
 
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }
