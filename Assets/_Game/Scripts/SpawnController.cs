@@ -7,55 +7,52 @@ public class SpawnController : MonoBehaviour
     public GameObject objectiveBallPrefab;
     public int maxPool = 20;
 
-    public float xOffset = 2f;
-    public float yOffset = 2f;
-    bool startGame = false;
+    public float parralaxFactor;
+    public float fieldWidth = 20f;
+    public float fieldHeight = 25f;
+    float xOffset;
+    float yOffset;
 
-    Vector3 center;
-    Vector3 size;
 
+    public GameObject[] objPool;
+    Transform cameraTransform;
 
     private Vector2 screenBounds;
-    public List<GameObject> objPool = new List<GameObject>();
 
     private void Awake()
     {
-        
+        cameraTransform = Camera.main.transform;
 
-        
+        xOffset = fieldWidth * 0.5f;
+        yOffset = fieldHeight * 0.5f;
     }
 
     private void Start()
     {
-        AddToPool();
+        //screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-
-
+        SpawnObjectiveBalls();
+        
     }
 
-    void AddToPool()
+
+
+    private void Update()
+    {
+       
+    }
+
+
+    private void SpawnObjectiveBalls()
     {
         for (int i = 0; i < maxPool; i++)
         {
-            Vector3 pos = center + new Vector3(Random.Range(-screenBounds.x / 2, screenBounds.x / 2),
-                                               Random.Range(-screenBounds.y / 2, screenBounds.y / 2),
-                                               0);
+            GameObject objBall = Instantiate(objectiveBallPrefab) as GameObject;
+            //Vector2 randomPos = new Vector2(Random.Range(-screenBounds.x, screenBounds.x) * 2 + parralaxFactor, Random.Range(-screenBounds.y, screenBounds.y) * 2 + parralaxFactor);
+            Vector3 randomPos = GetRandomInRectangle(fieldWidth, fieldHeight) + transform.position;
 
-            GameObject obj = Instantiate(objectiveBallPrefab, pos, Quaternion.identity);
 
-            objPool.Add(obj);
-        }
-
-        
-
-    }
-
-    void AddToWorldRandom()
-    {
-        foreach (GameObject obj in objPool)
-        {
-            obj.transform.position = new Vector2(Random.Range(-screenBounds.x, screenBounds.x), Random.Range(-screenBounds.y, screenBounds.y));
+            objBall.transform.position = randomPos;
         }
     }
 

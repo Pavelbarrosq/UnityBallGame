@@ -25025,6 +25025,9 @@ MonoBehaviour:
   objectiveBallPrefab: {fileID: 4047629519625222608, guid: e1f76bb25f2a94734af3feea33d45142,
     type: 3}
   maxPool: 20
+  xOffset: 2
+  yOffset: 2
+  objPool: []
 --- !u!4 &1874730139
 Transform:
   m_ObjectHideFlags: 0
