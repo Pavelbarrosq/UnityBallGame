@@ -43,14 +43,14 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        
+        if (player != null)
+        {
+            lineStartPos = playerPos.position;
+        }
+
         if (Input.touchCount > 0)
         {
-            if (player != null)
-            {
-                lineStartPos = playerPos.position;
-            }
+            
 
             Touch touch = Input.GetTouch(0);
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);

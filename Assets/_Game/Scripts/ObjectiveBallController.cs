@@ -19,6 +19,10 @@ public class ObjectiveBallController : MonoBehaviour
     //public Rigidbody2D playerRB;
     private UnityEngine.Object explosionRef;
 
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {
