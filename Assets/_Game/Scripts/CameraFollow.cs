@@ -26,15 +26,19 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        float newZoom = standardZoom + (Mathf.Abs(Vector2.Distance(transform.position, playerTransform.position))) / 4;
-        Vector3 playerToCam = basePosition - playerTransform.position;
-        Vector3 desiredPosition = playerTransform.position + offset;
-        desiredPosition.z = -10f;
+        if (playerTransform != null)
+        {
+            float newZoom = standardZoom + (Mathf.Abs(Vector2.Distance(transform.position, playerTransform.position))) / 4;
+            Vector3 playerToCam = basePosition - playerTransform.position;
+            Vector3 desiredPosition = playerTransform.position + offset;
+            desiredPosition.z = -10f;
 
-        transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
-        //offset.y = yOffset + newZoom / 6;
+            transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
+            //offset.y = yOffset + newZoom / 6;
 
-        currentCamera.orthographicSize = Mathf.SmoothDamp(currentCamera.orthographicSize, newZoom, ref zoomVel, zoomSpeed);
+            currentCamera.orthographicSize = Mathf.SmoothDamp(currentCamera.orthographicSize, newZoom, ref zoomVel, zoomSpeed);
+        }
+        
 
         //Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 

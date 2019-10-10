@@ -4,62 +4,48 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-    public GameObject objectiveBallPrefab;
-    public int maxPool = 20;
 
-    public float parralaxFactor;
-    public float fieldWidth = 20f;
-    public float fieldHeight = 25f;
-    float xOffset;
-    float yOffset;
+    public GameObject objPrefab;
+    public List<GameObject> objPool;
+    public int maxObj = 20;
+    GameObject obj;
 
-
-    public GameObject[] objPool;
-    Transform cameraTransform;
-
-    private Vector2 screenBounds;
+    private Vector3 cameraBounds;
 
     private void Awake()
     {
-        cameraTransform = Camera.main.transform;
+        objPool = new List<GameObject>();
+        
+    }
 
-        xOffset = fieldWidth * 0.5f;
-        yOffset = fieldHeight * 0.5f;
+    private void Update()
+    {
+        cameraBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
     }
 
     private void Start()
     {
-        //screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
 
-        SpawnObjectiveBalls();
+        
+        AddPrefabsToList();
         
     }
 
-
-
-    private void Update()
+    private void AddPrefabsToList()
     {
-       
-    }
-
-
-    private void SpawnObjectiveBalls()
-    {
-        for (int i = 0; i < maxPool; i++)
+        for (int i = 0; i < maxObj; i++)
         {
-            GameObject objBall = Instantiate(objectiveBallPrefab) as GameObject;
-            //Vector2 randomPos = new Vector2(Random.Range(-screenBounds.x, screenBounds.x) * 2 + parralaxFactor, Random.Range(-screenBounds.y, screenBounds.y) * 2 + parralaxFactor);
-            Vector3 randomPos = GetRandomInRectangle(fieldWidth, fieldHeight) + transform.position;
 
+            GameObject objectiveBall = Instantiate(objPrefab) as GameObject;
+            objectiveBall.transform.position = transform.position;
+            objectiveBall.SetActive(false);
+            objPool.Add(objectiveBall);
 
-            objBall.transform.position = randomPos;
+            
+
         }
+
+        Debug.Log("All objects " + objPool.Count);
     }
 
-    private Vector3 GetRandomInRectangle(float width, float height)
-    {
-        float x = Random.Range(0, width);
-        float y = Random.Range(0, height);
-        return new Vector3(x - xOffset, y - yOffset, 0);
-    }
 }

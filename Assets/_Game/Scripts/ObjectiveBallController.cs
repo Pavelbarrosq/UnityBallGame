@@ -14,12 +14,15 @@ public class ObjectiveBallController : MonoBehaviour
 
     Rigidbody2D playerRefRB;
 
+    Vector3 screenBounds;
+
     //public Rigidbody2D playerRB;
     private UnityEngine.Object explosionRef;
 
 
     private void Start()
     {
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerRefRB = player.GetComponent<Rigidbody2D>();
 
@@ -29,6 +32,17 @@ public class ObjectiveBallController : MonoBehaviour
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         matDefault = sr.material;
         explosionRef = Resources.Load("Explosion");
+    }
+
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        
     }
 
 
@@ -85,8 +99,5 @@ public class ObjectiveBallController : MonoBehaviour
 
     }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
+    
 }
