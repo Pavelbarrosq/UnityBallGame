@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
 
     
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (playerTransform != null)
         {

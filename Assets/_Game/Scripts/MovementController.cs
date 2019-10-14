@@ -68,7 +68,6 @@ public class MovementController : MonoBehaviour
                     rb.gravityScale = 0;
                     rb.mass = 0.1f;
 
-
                     rb.drag = setDrag;
                     lr.enabled = true;
                     lineStartPos = playerPos.position;
@@ -105,24 +104,4 @@ public class MovementController : MonoBehaviour
             }
         }
     }
-
-    
-
-    //private IEnumerator SetRBComponent(float delay, bool orNah)
-    //{
-    //    if (!orNah)
-    //    {
-    //        yield return new WaitForSeconds(delay);
-    //        rb.gravityScale = 1;
-    //        rb.mass = 1;
-    //        rb.drag = 0;
-    //    } else
-    //    {
-    //        yield return new WaitForSeconds(delay);
-    //        rb.gravityScale = 0;
-    //        rb.mass = 0.1f;
-    //        rb.drag = 1;
-    //    }
-    //}
-
 }
