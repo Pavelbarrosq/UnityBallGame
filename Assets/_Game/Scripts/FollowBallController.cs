@@ -9,12 +9,16 @@ public class FollowBallController : MonoBehaviour
     private Transform target;
     public float distance = 10f;
     public float speed;
+    private Object playerDamageParticle;
+    private Object followBallExplosion;
     
     private void Awake()
     {
         playerRef = GameObject.FindGameObjectWithTag("Player");
         playerRB = playerRef.GetComponent<Rigidbody2D>();
         target = playerRef.GetComponent<Transform>();
+        playerDamageParticle = Resources.Load("PlayerDamageParticle");
+        followBallExplosion = Resources.Load("FollowBallExplosion");
 
     }
 
@@ -33,7 +37,31 @@ public class FollowBallController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player hit with small damage");
+            //Destroy obj
+            Destroy(gameObject);
+
+            //add particles
+            FollowBallExplosion();
+            PlayerParticle();
+
+            // -Health
+
+
+
         }
     }
+
+    private void FollowBallExplosion()
+    {
+        GameObject explosion = Instantiate(followBallExplosion) as GameObject;
+        explosion.transform.position = transform.position;
+
+    }
+
+    private void PlayerParticle()
+    {
+        GameObject particle = Instantiate(playerDamageParticle) as GameObject;
+        particle.transform.position = target.transform.position;
+    }
+   
 }

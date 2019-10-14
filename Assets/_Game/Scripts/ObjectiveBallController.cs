@@ -49,6 +49,8 @@ public class ObjectiveBallController : MonoBehaviour
         
     }
 
+    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,6 +63,8 @@ public class ObjectiveBallController : MonoBehaviour
             //playerRB.drag = 10000;
             sr.material = matWhite;
             Debug.Log("Target hit!");
+
+            //Gain little health
 
 
             StartCoroutine(KillSelf(waitToKillTime));
