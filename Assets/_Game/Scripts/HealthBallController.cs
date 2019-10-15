@@ -5,49 +5,40 @@ using UnityEngine.UI;
 
 public class HealthBallController : MonoBehaviour
 {
+    private Object healthExplosion;
 
-    [SerializeField][Range(0.0f, 1.0f)] private float fillAmount;
-    private float maxHealth = 1f;
-    [SerializeField ]private float subtractHealth = 0.1f;
-    [SerializeField] private Image content;
-    [SerializeField] private int second = 1;
-    private GameObject player;
+
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        healthExplosion = Resources.Load("HealthExplosion");
     }
 
-    private void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        HandleHealthBar();
-        StartCoroutine(SubtraktHealthPerSecond());
-    }
 
-    private void Update()
-    {
-        if (player != null)
+        if (collision.CompareTag("Player"))
         {
-            if (content.fillAmount == 0f)
-            {
-                Destroy(player);
-            }
+            // gain full HP
+
+            //Destroy obj
+            Destroy(gameObject);
+
+            //add particle
+            HealthExplosion();
         }
-        
-        
+
+
     }
 
-    private void HandleHealthBar()
+    private void HealthExplosion()
     {
-        content.fillAmount = maxHealth;
-    }
-
-    IEnumerator  SubtraktHealthPerSecond()
-    {
-        while (true)
+        if (gameObject != null)
         {
-            yield return new WaitForSeconds(second);
-            content.fillAmount -= subtractHealth;
+            GameObject particle = Instantiate(healthExplosion) as GameObject;
+            particle.transform.position = transform.position;
+
         }
     }
+
 }

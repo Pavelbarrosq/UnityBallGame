@@ -24833,11 +24833,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1948407655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73efc2330ad634565ba18f7d19ffe2b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e36c112800ea4b45870d60964cfc888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillAmount: 1
-  subtractHealth: 0.03
+  fillAmount: 0
+  subtractHealth: 0.1
   content: {fileID: 217507480}
   second: 1
 --- !u!1 &1962607652
