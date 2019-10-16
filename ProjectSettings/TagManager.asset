@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Objective
   - TouchLine
+  - Content
   layers:
   - Default
   - TransparentFX
