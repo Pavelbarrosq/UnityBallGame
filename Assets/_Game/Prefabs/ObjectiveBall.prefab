@@ -112,3 +112,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushUp: 30
   waitToKillTime: 0.2
+  addToHealth: 0.1

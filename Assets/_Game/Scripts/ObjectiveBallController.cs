@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectiveBallController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ObjectiveBallController : MonoBehaviour
     private Material matDefault;
     public float pushUp = 0.5f;
     public float waitToKillTime = 0.3f;
+    private Image content;
+    [SerializeField, Range(0.0f, 0.3f)] float addToHealth;
 
     private SpriteRenderer sr;
     private CircleCollider2D cc;
@@ -30,7 +33,7 @@ public class ObjectiveBallController : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerRefRB = player.GetComponent<Rigidbody2D>();
 
-
+        content = GameObject.FindGameObjectWithTag("Content").GetComponent<Image>();
         cc = playerRefRB.GetComponentInParent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
@@ -39,10 +42,7 @@ public class ObjectiveBallController : MonoBehaviour
     }
 
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
+    
 
     private void Update()
     {
@@ -65,7 +65,7 @@ public class ObjectiveBallController : MonoBehaviour
             Debug.Log("Target hit!");
 
             //Gain little health
-
+            AddPlayerHealth(addToHealth);
 
             StartCoroutine(KillSelf(waitToKillTime));
 
@@ -105,6 +105,11 @@ public class ObjectiveBallController : MonoBehaviour
 
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
+    }
+
+    private void AddPlayerHealth(float healthToAdd)
+    {
+        content.fillAmount += healthToAdd;
     }
 
     

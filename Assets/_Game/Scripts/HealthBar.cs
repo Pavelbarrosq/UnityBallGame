@@ -7,9 +7,10 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] [Range(0.0f, 1.0f)] private float fillAmount;
     private float maxHealth = 1f;
-    [SerializeField] private float subtractHealth = 0.1f;
+    [SerializeField] private float subtractHealth = 0.05f;
     [SerializeField] private Image content;
     [SerializeField] private int second = 1;
+    [SerializeField] private float lerpSpeed = 2f;
     private GameObject player;
     private Object playerExplosion;
 
@@ -22,15 +23,16 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        HandleHealthBar();
+        StartHealth();
         StartCoroutine(SubtraktHealthPerSecond());
     }
 
     private void Update()
     {
+
         if (player != null)
         {
-            if (content.fillAmount == 0f)
+            if (content.fillAmount == 0f || content.fillAmount < 0)
             {
                 StopCoroutine(SubtraktHealthPerSecond());
                 content.fillAmount = 0f;
@@ -43,18 +45,23 @@ public class HealthBar : MonoBehaviour
 
     }
 
-    private void HandleHealthBar()
+    private void StartHealth()
     {
         content.fillAmount = maxHealth;
     }
 
     IEnumerator SubtraktHealthPerSecond()
     {
-        while (true)
+        if (player != null)
         {
-            yield return new WaitForSeconds(second);
-            content.fillAmount -= subtractHealth;
+            while (true)
+            {
+                yield return new WaitForSeconds(second);
+                content.fillAmount -= subtractHealth;
+
+            }
         }
+        
     }
 
     private void PlayerDeathExplosion()

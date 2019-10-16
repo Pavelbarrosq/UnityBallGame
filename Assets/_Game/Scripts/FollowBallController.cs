@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FollowBallController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class FollowBallController : MonoBehaviour
     public float speed;
     private Object playerDamageParticle;
     private Object followBallExplosion;
+    private Image content;
+    [SerializeField, Range(0f, 0.3f)] private float subtractHealth; 
     
     private void Awake()
     {
@@ -19,18 +22,20 @@ public class FollowBallController : MonoBehaviour
         target = playerRef.GetComponent<Transform>();
         playerDamageParticle = Resources.Load("PlayerDamageParticle");
         followBallExplosion = Resources.Load("FollowBallExplosion");
+        content = GameObject.FindGameObjectWithTag("Content").GetComponent<Image>();
 
     }
 
 
     private void Update()
     {
-        if (Vector2.Distance(target.position, transform.position) <= distance)
+        if (gameObject != null && playerRef != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
-
-        
+            if (Vector2.Distance(target.position, transform.position) <= distance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            }
+        }   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +50,7 @@ public class FollowBallController : MonoBehaviour
             PlayerParticle();
 
             // -Health
-
+            HealthDamage(subtractHealth);
 
 
         }
@@ -53,6 +58,7 @@ public class FollowBallController : MonoBehaviour
 
     private void FollowBallExplosion()
     {
+        // Creating a clone of the particle and set it to obj position
         GameObject explosion = Instantiate(followBallExplosion) as GameObject;
         explosion.transform.position = transform.position;
 
@@ -60,8 +66,15 @@ public class FollowBallController : MonoBehaviour
 
     private void PlayerParticle()
     {
+        // Creating a clone of the particle and set it to obj position
         GameObject particle = Instantiate(playerDamageParticle) as GameObject;
         particle.transform.position = target.transform.position;
+    }
+
+    private void HealthDamage(float healthToSubtract)
+    {
+        
+        content.fillAmount -= healthToSubtract;
     }
    
 }

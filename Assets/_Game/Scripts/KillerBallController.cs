@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KillerBallController : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class KillerBallController : MonoBehaviour
     private Rigidbody2D rb;
     private Object playerExplosionRef;
     public float waitToKillTime = 0.3f;
+    private Image content;
     // Start is called before the first frame update
     private void Awake()
     {
-        
+        content = GameObject.FindGameObjectWithTag("Content").GetComponent<Image>();
     }
 
     void Start()
@@ -43,8 +45,8 @@ public class KillerBallController : MonoBehaviour
             Debug.Log("Player Killed");
 
             StartCoroutine(BeforeDeath());
-            
 
+            SetHealthToZero();
 
             lr.SetActive(false);
         }
@@ -69,6 +71,11 @@ public class KillerBallController : MonoBehaviour
             explosion.transform.position = playerRef.transform.position;
         }
         
+    }
+
+    private void SetHealthToZero()
+    {
+        content.fillAmount = 0;
     }
 
 
