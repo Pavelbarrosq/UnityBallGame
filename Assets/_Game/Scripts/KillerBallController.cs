@@ -61,7 +61,7 @@ public class KillerBallController : MonoBehaviour
         }
     }
 
-    public void PlayerDeathExplosion()
+    private void PlayerDeathExplosion()
     {
         if (playerRef != null)
         {

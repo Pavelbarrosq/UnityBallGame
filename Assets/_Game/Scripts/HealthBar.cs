@@ -11,10 +11,13 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image content;
     [SerializeField] private int second = 1;
     private GameObject player;
+    private Object playerExplosion;
 
     private void Awake()
     {
+        
         player = GameObject.FindGameObjectWithTag("Player");
+        playerExplosion = Resources.Load("PlayerExplosion");
     }
 
     private void Start()
@@ -29,7 +32,11 @@ public class HealthBar : MonoBehaviour
         {
             if (content.fillAmount == 0f)
             {
+                StopCoroutine(SubtraktHealthPerSecond());
+                content.fillAmount = 0f;
+                PlayerDeathExplosion();
                 Destroy(player);
+                
             }
         }
 
@@ -48,5 +55,15 @@ public class HealthBar : MonoBehaviour
             yield return new WaitForSeconds(second);
             content.fillAmount -= subtractHealth;
         }
+    }
+
+    private void PlayerDeathExplosion()
+    {
+        if (player != null)
+        {
+            GameObject explosion = (GameObject)Instantiate(playerExplosion);
+            explosion.transform.position = player.transform.position;
+        }
+
     }
 }
