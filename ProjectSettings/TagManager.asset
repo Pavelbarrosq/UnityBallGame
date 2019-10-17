@@ -10,6 +10,7 @@ TagManager:
   - Objective
   - TouchLine
   - Content
+  - Score
   layers:
   - Default
   - TransparentFX

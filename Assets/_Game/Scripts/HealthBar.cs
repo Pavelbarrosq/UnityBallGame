@@ -13,10 +13,11 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private float lerpSpeed = 2f;
     private GameObject player;
     private Object playerExplosion;
+    private GameManager gameManager;
 
     private void Awake()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerExplosion = Resources.Load("PlayerExplosion");
     }
@@ -38,6 +39,7 @@ public class HealthBar : MonoBehaviour
                 content.fillAmount = 0f;
                 PlayerDeathExplosion();
                 Destroy(player);
+                gameManager.EndGame();
                 
             }
         }

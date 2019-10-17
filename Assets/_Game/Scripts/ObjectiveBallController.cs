@@ -11,6 +11,8 @@ public class ObjectiveBallController : MonoBehaviour
     public float waitToKillTime = 0.3f;
     private Image content;
     [SerializeField, Range(0.0f, 0.3f)] float addToHealth;
+    private ScoreCounter scoreCounter;
+
 
     private SpriteRenderer sr;
     private CircleCollider2D cc;
@@ -24,7 +26,7 @@ public class ObjectiveBallController : MonoBehaviour
 
     private void Awake()
     {
-        
+        scoreCounter = FindObjectOfType<ScoreCounter>();
     }
 
     private void Start()
@@ -56,7 +58,8 @@ public class ObjectiveBallController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            
+
+            scoreCounter.AddScore();
             playerRefRB.bodyType = RigidbodyType2D.Static;
             //playerRB.gravityScale = 0;
             //playerRB.mass = 0.1f;

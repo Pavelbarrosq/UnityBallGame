@@ -35,6 +35,13 @@ public class MovementController : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        DestroyLineRenderer();
+    }
+
+
+
     private void Start()
     {
         cameraFollow = Camera.main.GetComponent<CameraFollow>();
@@ -45,63 +52,73 @@ public class MovementController : MonoBehaviour
     {
         if (player != null)
         {
+            if (Input.touchCount > 0)
+            {
+
+
+                Touch touch = Input.GetTouch(0);
+                Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+                startPos.z = 0f;
+                startPos = playerPos.position;
+                lr.positionCount = 2;
+
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+
+                        //cameraFollow.HandleZoom(true);
+                        startPos = touchPos;
+                        //StartCoroutine(SetRBComponent(delay, true));
+                        rb.gravityScale = 0;
+                        rb.mass = 0.1f;
+
+                        rb.drag = setDrag;
+                        lr.enabled = true;
+                        lineStartPos = playerPos.position;
+                        lr.SetPosition(0, lineStartPos);
+                        lr.useWorldSpace = true;
+
+                        break;
+
+                    case TouchPhase.Moved:
+                        lineEndPos = touchPos;
+                        lr.SetPosition(0, lineStartPos);
+                        lr.SetPosition(1, lineEndPos);
+
+                        break;
+
+                    case TouchPhase.Ended:
+                        lr.enabled = false;
+                        //cameraFollow.HandleZoom(false);
+                        distance = touchPos.magnitude;
+                        direction = touchPos - startPos;
+
+                        rb.AddForce(direction * forceMulti);
+
+                        rb.gravityScale = 1;
+                        rb.mass = 1;
+                        rb.drag = 0;
+                        //StartCoroutine(SetRBComponent(delay, false));
+
+
+                        Debug.Log("SLUT!");
+                        directionChoosen = true;
+
+                        break;
+                }
+            }
+
             lineStartPos = playerPos.position;
         }
 
-        if (Input.touchCount > 0)
+        
+    }
+
+    private void DestroyLineRenderer()
+    {
+        if (player == null && lr != null)
         {
-            
-
-            Touch touch = Input.GetTouch(0);
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-            startPos.z = 0f;
-            startPos = playerPos.position;
-            lr.positionCount = 2;
-
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    
-                    //cameraFollow.HandleZoom(true);
-                    startPos = touchPos;
-                    //StartCoroutine(SetRBComponent(delay, true));
-                    rb.gravityScale = 0;
-                    rb.mass = 0.1f;
-
-                    rb.drag = setDrag;
-                    lr.enabled = true;
-                    lineStartPos = playerPos.position;
-                    lr.SetPosition(0, lineStartPos);
-                    lr.useWorldSpace = true;
-
-                    break;
-
-                case TouchPhase.Moved:
-                    lineEndPos = touchPos;
-                    lr.SetPosition(0, lineStartPos);
-                    lr.SetPosition(1, lineEndPos);
-
-                    break;
-
-                case TouchPhase.Ended:
-                    lr.enabled = false;
-                    //cameraFollow.HandleZoom(false);
-                    distance = touchPos.magnitude;
-                    direction = touchPos - startPos;
-
-                    rb.AddForce(direction * forceMulti);
-                    
-                    rb.gravityScale = 1;
-                    rb.mass = 1;
-                    rb.drag = 0;
-                    //StartCoroutine(SetRBComponent(delay, false));
-
-
-                    Debug.Log("SLUT!");
-                    directionChoosen = true;
-
-                    break;
-            }
+            Destroy(lr.gameObject);
         }
     }
 }
