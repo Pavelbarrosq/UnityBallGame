@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Debug.Log("Button clicked");
         SceneManager.LoadScene("Game");
     }
 }

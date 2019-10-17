@@ -40,6 +40,8 @@ public class HealthBar : MonoBehaviour
                 PlayerDeathExplosion();
                 Destroy(player);
                 gameManager.EndGame();
+                FindObjectOfType<AudioManager>().Play("Explosion");
+                FindObjectOfType<AudioManager>().Stop("Music");
                 
             }
         }

@@ -97,6 +97,7 @@ public class ObjectiveBallController : MonoBehaviour
         {
             yield return new WaitForSeconds(waitTime);
             Destroy(gameObject);
+            FindObjectOfType<AudioManager>().Play("Explosion");
             AddParticleExplosion();
             playerRefRB.bodyType = RigidbodyType2D.Dynamic;
         }

@@ -49,6 +49,9 @@ public class FollowBallController : MonoBehaviour
             FollowBallExplosion();
             PlayerParticle();
 
+            //Add Audio
+            FindObjectOfType<AudioManager>().Play("Damage");
+
             // -Health
             HealthDamage(subtractHealth);
 

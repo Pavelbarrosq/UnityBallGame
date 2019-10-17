@@ -47,6 +47,9 @@ public class HealthBallController : MonoBehaviour
             // Add Particle Explosion
             HealthExplosion();
 
+            //Add Audio
+            FindObjectOfType<AudioManager>().Play("Health");
+
             //Change players bodyType
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
