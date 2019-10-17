@@ -8,7 +8,7 @@ public class ObjectiveBallController : MonoBehaviour
     private Material matWhite;
     private Material matDefault;
     public float pushUp = 0.5f;
-    public float waitToKillTime = 0.3f;
+    public float waitToKillTime = 0.15f;
     private Image content;
     [SerializeField, Range(0.0f, 0.3f)] float addToHealth;
     private ScoreCounter scoreCounter;

@@ -8,11 +8,14 @@ public class HealthBallController : MonoBehaviour
     private Object healthExplosion;
     private Image content;
     private float maxHealth = 1f;
+    private Rigidbody2D rb;
+    public float waitToKillTime = 0.15f;
 
 
 
     private void Awake()
     {
+        rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
         healthExplosion = Resources.Load("HealthExplosion");
         content = GameObject.FindGameObjectWithTag("Content").GetComponent<Image>();
     }
@@ -22,17 +25,31 @@ public class HealthBallController : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            rb.bodyType = RigidbodyType2D.Static;
             // gain full HP
             SetFullHealth(maxHealth);
 
-            //Destroy obj
-            Destroy(gameObject);
-
-            //add particle
-            HealthExplosion();
+            StartCoroutine(KillSelf(waitToKillTime));
         }
 
 
+    }
+
+    private IEnumerator KillSelf(float waitTime)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            //Destroy Gameobject
+            Destroy(this.gameObject);
+
+            // Add Particle Explosion
+            HealthExplosion();
+
+            //Change players bodyType
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
     }
 
     private void HealthExplosion()
