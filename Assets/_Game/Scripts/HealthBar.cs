@@ -25,7 +25,7 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         StartHealth();
-        StartCoroutine(SubtraktHealthPerSecond());
+        //StartCoroutine(SubtraktHealthPerSecond());
     }
 
     private void Update()
