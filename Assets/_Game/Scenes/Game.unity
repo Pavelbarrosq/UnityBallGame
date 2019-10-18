@@ -26627,6 +26627,18 @@ MonoBehaviour:
   objectBallPrefab: {fileID: 4047629519625222608, guid: e1f76bb25f2a94734af3feea33d45142,
     type: 3}
   objectivsPerField: 15
+  fieldSize: 15
+  colors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.1656568, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.8430972, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.944716, a: 1}
+  - {r: 0.4423542, g: 0, b: 1, a: 1}
+  - {r: 0, g: 0.33962262, b: 0.016530989, a: 1}
+  - {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  - {r: 1, g: 0.9214484, b: 0, a: 1}
+  - {r: 0.4528302, g: 0.43712777, b: 0.010679956, a: 1}
 --- !u!4 &1874730139
 Transform:
   m_ObjectHideFlags: 0
