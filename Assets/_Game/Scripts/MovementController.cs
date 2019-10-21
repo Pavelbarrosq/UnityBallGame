@@ -66,6 +66,7 @@ public class MovementController : MonoBehaviour
                 {
                     case TouchPhase.Began:
 
+                        //rb.bodyType = RigidbodyType2D.Dynamic;
                         //cameraFollow.HandleZoom(true);
                         startPos = touchPos;
                         //StartCoroutine(SetRBComponent(delay, true));

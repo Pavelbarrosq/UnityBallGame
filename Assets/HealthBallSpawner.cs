@@ -1,27 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-public class SpawnController : MonoBehaviour
+public class HealthBallSpawner : MonoBehaviour
 {
+    
+    public GameObject healthBallPrefab;
 
-    public GameObject objectBallPrefab;
+    
+    public int healthPerField = 1;
 
-    public int objectivesPerField = 15;
-
-
-    [SerializeField] private float fieldSize = 15f;
+    [SerializeField ]private float fieldSize = 15f;
 
     private Vector2Int lastField;
 
 
-    List<GameObject> objectiveBalls = new List<GameObject>();
+    List<GameObject> healthBalls = new List<GameObject>();
 
 
     private void Awake()
     {
-        SpawnOnAwake(objectBallPrefab, objectivesPerField, objectiveBalls);
+        SpawnOnAwake(healthBallPrefab, healthPerField, healthBalls);
 
         //Vector2Int currentField = GetCurrentField();
 
@@ -47,7 +47,7 @@ public class SpawnController : MonoBehaviour
 
     private void Update()
     {
-        PopulateOnUpdate(objectBallPrefab, objectivesPerField, objectiveBalls);
+        PopulateOnUpdate(healthBallPrefab, healthPerField, healthBalls);
 
         //Vector2Int currentField = GetCurrentField();
 
@@ -59,7 +59,7 @@ public class SpawnController : MonoBehaviour
 
         //        for(int i = objectiveBalls.Count - 1; i >= 0; i--)
         //        {
-                   
+
         //            if (objectiveBalls[i] == null)
         //            {
         //                objectiveBalls.RemoveAt(i);
@@ -147,13 +147,13 @@ public class SpawnController : MonoBehaviour
 
     private void PopulateField(Vector2Int field, GameObject ballPrefab, int ballsPerField, List<GameObject> ballList)
     {
-        
+
 
         for (int i = 0; i < ballsPerField; i++)
         {
             Vector3 pos = new Vector3(Random.Range(-fieldSize, fieldSize) + (field.x * 2 * fieldSize), Random.Range(-fieldSize, fieldSize) + (field.y * 2 * fieldSize), 0);
 
-            GameObject obj =  Instantiate(ballPrefab, pos, Quaternion.identity);
+            GameObject obj = Instantiate(ballPrefab, pos, Quaternion.identity);
             ballList.Add(obj);
 
 
@@ -203,7 +203,7 @@ public class SpawnController : MonoBehaviour
         neighbours[13] = new Vector2Int(field.x, field.y - 2);
         neighbours[14] = new Vector2Int(field.x + 1, field.y - 2);
         neighbours[15] = new Vector2Int(field.x + 2, field.y - 2);
-        
+
         return neighbours;
     }
 
