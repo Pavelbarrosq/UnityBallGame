@@ -23,14 +23,6 @@ public class HealthBallSpawner : MonoBehaviour
     {
         SpawnOnAwake(healthBallPrefab, healthPerField, healthBalls);
 
-        //Vector2Int currentField = GetCurrentField();
-
-        //PopulateField(currentField);
-
-        //PopulateNeighbouringFields(currentField);
-
-        //PopulateOuterNeighbouringFields(currentField);
-
     }
 
     private void SpawnOnAwake(GameObject ballPrefab, int ballsPerField, List<GameObject> ballList)
@@ -49,43 +41,7 @@ public class HealthBallSpawner : MonoBehaviour
     {
         PopulateOnUpdate(healthBallPrefab, healthPerField, healthBalls);
 
-        //Vector2Int currentField = GetCurrentField();
-
-        //if (Time.frameCount % 2 == 0)
-        //{
-
-        //    if (lastField != currentField ) // om vi har bytt fällt
-        //    {
-
-        //        for(int i = objectiveBalls.Count - 1; i >= 0; i--)
-        //        {
-
-        //            if (objectiveBalls[i] == null)
-        //            {
-        //                objectiveBalls.RemoveAt(i);
-        //            }
-        //            else if (GetField(objectiveBalls[i].transform.position) != currentField
-        //                && !NeighbouringFields(currentField).Contains<Vector2Int>(GetField(objectiveBalls[i].transform.position))) // om boll int är i current eller neighbour
-        //            {
-        //                Destroy(objectiveBalls[i]);
-        //                objectiveBalls.RemoveAt(i); 
-        //            }
-        //        }
-
-        //        PopulateOuterNeighbouringFields(currentField);
-        //        lastField = currentField;
-        //    }
-        //}
-
-        //for (int i = 0; i < objectiveBalls.Count; i++)
-        //{
-        //    if (objectiveBalls[i] == null)
-        //    {
-        //        objectiveBalls.RemoveAt(i);
-        //    }
-        //}
-
-
+   
     }
 
     private void PopulateOnUpdate(GameObject ballPrefab, int ballsPerField, List<GameObject> ballList)

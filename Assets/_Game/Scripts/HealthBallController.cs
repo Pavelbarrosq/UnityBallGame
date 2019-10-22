@@ -12,7 +12,6 @@ public class HealthBallController : MonoBehaviour
     public float waitToKillTime = 0.15f;
 
 
-
     private void Awake()
     {
         rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();

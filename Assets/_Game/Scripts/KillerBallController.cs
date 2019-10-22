@@ -12,7 +12,9 @@ public class KillerBallController : MonoBehaviour
     private Object playerExplosionRef;
     public float waitToKillTime = 0.3f;
     private Image content;
-    // Start is called before the first frame update
+
+
+
     private void Awake()
     {
         content = GameObject.FindGameObjectWithTag("Content").GetComponent<Image>();
@@ -30,11 +32,6 @@ public class KillerBallController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -22,14 +22,7 @@ public class FollowBallSpawner : MonoBehaviour
     {
         SpawnOnAwake(followBallPrefab, followPerField, followBalls);
 
-        //Vector2Int currentField = GetCurrentField();
-
-        //PopulateField(currentField);
-
-        //PopulateNeighbouringFields(currentField);
-
-        //PopulateOuterNeighbouringFields(currentField);
-
+ 
     }
 
     private void SpawnOnAwake(GameObject ballPrefab, int ballsPerField, List<GameObject> ballList)

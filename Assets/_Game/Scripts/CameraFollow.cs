@@ -17,13 +17,7 @@ public class CameraFollow : MonoBehaviour
     public float zoomSpeed = 1f;
 
 
-    private void Awake()
-    {
-        
-    }
-
-    
-
+   
     private void FixedUpdate()
     {
         if (playerTransform != null)
@@ -34,29 +28,17 @@ public class CameraFollow : MonoBehaviour
             desiredPosition.z = -10f;
 
             transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
-            //offset.y = yOffset + newZoom / 6;
+
 
             currentCamera.orthographicSize = Mathf.SmoothDamp(currentCamera.orthographicSize, newZoom, ref zoomVel, zoomSpeed);
         }
-        
-
-        //Vector3 smoothPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-
-        //transform.position = smoothPosition;
         
 
     }
     private void Start()
     {
         basePosition = transform.position;
-        //yOffset = offset.y;
+
     }
 
-    private void CameraPosition()
-    {
-
-
-
-        //transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y + position, transform.position.z);
-    }
 }

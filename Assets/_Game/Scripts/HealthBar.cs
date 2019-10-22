@@ -6,47 +6,48 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] [Range(0.0f, 1.0f)] private float fillAmount;
+    private float timeStartedLerping;
     private float maxHealth = 1f;
-    [SerializeField] private float subtractHealth = 0.05f;
+    [SerializeField] private float subtractHealth = 0.5f;
     [SerializeField] private Image content;
-    [SerializeField] private int second = 1;
+    [SerializeField] private float second = 1;
     [SerializeField] private float lerpSpeed = 2f;
     private GameObject player;
     private Object playerExplosion;
     private GameManager gameManager;
 
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerExplosion = Resources.Load("PlayerExplosion");
+        playerExplosion = Resources.Load("PlayerExplosion");       
     }
 
     private void Start()
-    {
+    {  
         StartHealth();
         StartCoroutine(SubtraktHealthPerSecond());
     }
 
+
+
+
     private void Update()
     {
-
         if (player != null)
         {
-            if (content.fillAmount == 0f || content.fillAmount < 0)
-            {
+            if (content.fillAmount <= 0f )
+            {               
                 StopCoroutine(SubtraktHealthPerSecond());
                 content.fillAmount = 0f;
                 PlayerDeathExplosion();
                 Destroy(player);
                 gameManager.EndGame();
                 FindObjectOfType<AudioManager>().Play("Explosion");
-                FindObjectOfType<AudioManager>().Stop("Music");
-                
+                FindObjectOfType<AudioManager>().Stop("Music");                
             }
         }
-
-
     }
 
     private void StartHealth()
@@ -76,5 +77,16 @@ public class HealthBar : MonoBehaviour
             explosion.transform.position = player.transform.position;
         }
 
+    }
+
+    public float Lerp(float start, float end, float timeStartedLerping, float lerpTime)
+    {
+        float timeSinceStarted = Time.time - timeStartedLerping;
+
+        float procentageCompleted = timeSinceStarted / lerpTime;
+
+        var result = Mathf.Lerp(start, end, procentageCompleted);
+
+        return result;
     }
 }

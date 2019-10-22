@@ -10191,7 +10191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000045776367, y: -0.000011444092}
+  m_AnchoredPosition: {x: -0.000045776367, y: -14}
   m_SizeDelta: {x: 0.000061035, y: 0.0000076294}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058500598
@@ -15043,7 +15043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 110}
+  m_AnchoredPosition: {x: 0, y: 56}
   m_SizeDelta: {x: 1334, y: 153.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105825098
@@ -20449,7 +20449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 667, y: -375}
+  m_AnchoredPosition: {x: 667, y: -443}
   m_SizeDelta: {x: 326.3, y: 79.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1562528604
@@ -25793,10 +25793,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillAmount: 1
-  subtractHealth: 0.1
+  subtractHealth: 0.01
   content: {fileID: 217507480}
-  second: 1
-  lerpSpeed: 0.0001
+  second: 0.05
+  lerpSpeed: 2
 --- !u!1 &1962607652
 GameObject:
   m_ObjectHideFlags: 0

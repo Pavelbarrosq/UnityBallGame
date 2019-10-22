@@ -22,13 +22,6 @@ public class KillerBallSpawner : MonoBehaviour
     {
         SpawnOnAwake(killerBallPrefab, killersPerField, killerBalls);
 
-        //Vector2Int currentField = GetCurrentField();
-
-        //PopulateField(currentField);
-
-        //PopulateNeighbouringFields(currentField);
-
-        //PopulateOuterNeighbouringFields(currentField);
 
     }
 
