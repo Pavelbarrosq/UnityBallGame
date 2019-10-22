@@ -25498,6 +25498,11 @@ MonoBehaviour:
     volume: 0.108
     source: {fileID: 0}
     loop: 1
+  - name: SlingShot
+    clip: {fileID: 8300000, guid: 79c115873a0794927bab05eb6742ec0b, type: 3}
+    volume: 0.108
+    source: {fileID: 0}
+    loop: 0
 --- !u!224 &1801934370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25530,6 +25535,7 @@ GameObject:
   - component: {fileID: 1874730140}
   - component: {fileID: 1874730141}
   - component: {fileID: 1874730142}
+  - component: {fileID: 1874730143}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -25581,7 +25587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBallPrefab: {fileID: 3664023914669697653, guid: 6e7f31494968d43009347b7004b640f3,
     type: 3}
-  healthPerField: 2
+  healthPerField: 1
   fieldSize: 15
 --- !u!114 &1874730141
 MonoBehaviour:
@@ -25614,6 +25620,22 @@ MonoBehaviour:
   killerBallPrefab: {fileID: 468601578173512396, guid: 030d58b2bec3f4ff282d041440898884,
     type: 3}
   killersPerField: 3
+  fieldSize: 15
+--- !u!114 &1874730143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874730137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758026f1405d34afc9d5811c24da6fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomPushBallPrefab: {fileID: 2353070274224424287, guid: 6557ff68a60154a29b0b3c49bd975857,
+    type: 3}
+  RandomPushPerField: 3
   fieldSize: 15
 --- !u!1 &1924662827
 GameObject:

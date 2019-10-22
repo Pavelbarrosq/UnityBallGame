@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 15
-  speed: 4
-  subtractHealth: 0.151
+  speed: 5
+  subtractHealth: 0.15
 --- !u!58 &2128003930858387955
 CircleCollider2D:
   m_ObjectHideFlags: 0
