@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2128003930858387955}
   - component: {fileID: 2128003930858387951}
   - component: {fileID: 2128003930858387950}
+  - component: {fileID: -8395779921229420896}
   m_Layer: 0
   m_Name: FollowBall
   m_TagString: Untagged
@@ -241,3 +242,21 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &-8395779921229420896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128003930858387956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.9215687, g: 0.043137256, b: 0.098039225, a: 1}
+  glowBrightness: 1.8
+  outlineWidth: 1
+  alphaThreshold: 0
+  drawOutside: 0
+  enableInstancing: 0

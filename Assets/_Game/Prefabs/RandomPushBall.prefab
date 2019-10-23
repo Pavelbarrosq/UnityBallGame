@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2353070274224424274}
   - component: {fileID: 2353070274224424285}
   - component: {fileID: 2353070274224424284}
+  - component: {fileID: -3749192304876780798}
   m_Layer: 0
   m_Name: RandomPushBall
   m_TagString: Untagged
@@ -111,3 +112,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addForce: 2000
+  halfLife: 0.5
+--- !u!114 &-3749192304876780798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353070274224424287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowColor: {r: 0.86666673, g: 0.8588236, b: 0.18431373, a: 1}
+  glowBrightness: 1.8
+  outlineWidth: 1
+  alphaThreshold: 0
+  drawOutside: 0
+  enableInstancing: 0
